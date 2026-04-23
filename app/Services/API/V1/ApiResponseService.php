@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Services\API;
+namespace App\Services\API\V1;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Symfony\Component\HttpFoundation\Response;
 
-class V1ApiResponseService
+class ApiResponseService
 {
     /**
      * Create a new class instance.
@@ -27,6 +26,17 @@ class V1ApiResponseService
             'message' => $message,
         ], $code);
     }
+
+    public static function unauthorized($message = 'Unauthorized'): JsonResponse
+    {
+        return response()->json([
+            'status' => 'error',
+            'message' => $message,
+
+        ], Response::HTTP_UNAUTHORIZED);
+
+    }
+
     public static function forbiden($message = 'Forbidden'): JsonResponse
     {
         return response()->json([

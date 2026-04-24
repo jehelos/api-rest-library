@@ -31,8 +31,8 @@ class AuthSanctumService implements AuthServiceInterface
 
     public function register(array $data): JsonResponse
     {
-        //$user = User::query()->create($data);
-        $user = User::create($data);
+        $user = User::query()->create($data);
+        //$user = User::create($data);
         $token = $user->createToken(data_get($data, 'device_name'))->plainTextToken;
 
         return ApiResponseService::success([
